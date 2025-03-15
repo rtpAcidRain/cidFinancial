@@ -2,7 +2,7 @@
 () => {
 return (
  <div>
-    Hello motherfucker
+    Hello motherfucker2
 </div>
  );
 }

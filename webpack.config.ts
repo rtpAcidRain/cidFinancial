@@ -6,12 +6,12 @@ import { createWebpackConfig } from "./config/webpackConfig/createWebpackConfig"
 export default (env: WConfigEnv) => {
 
     const paths: WConfigPaths = {
-        entry: path.resolve(import.meta.dirname, 'src', 'index.tsx'),
-        build: path.resolve(import.meta.dirname, 'build'),
-        html: path.resolve(import.meta.dirname, 'public', 'index.html'),
-        src: path.resolve(import.meta.dirname, 'src'),
-        locales: path.resolve(import.meta.dirname, 'public', 'locales'),
-        buildLocales: path.resolve(import.meta.dirname, 'build', 'locales'),
+        entry: path.resolve(__dirname, 'src', 'index.tsx'),
+        build: path.resolve(__dirname, 'build'),
+        html: path.resolve(__dirname, 'public', 'index.html'),
+        src: path.resolve(__dirname, 'src'),
+        locales: path.resolve(__dirname, 'public', 'locales'),
+        buildLocales: path.resolve(__dirname, 'build', 'locales'),
     };
 
     const mode = env.mode || 'development';

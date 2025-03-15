@@ -3,6 +3,7 @@ import { WConfigOptions } from './types/types';
 import { resolvers } from './resolvers';
 import { plugins } from './plugins';
 import { loaders } from './loaders';
+import { createDevServer } from './creteDevServer';
 
 
 export function createWebpackConfig(options: WConfigOptions): webpack.Configuration {
@@ -22,5 +23,6 @@ export function createWebpackConfig(options: WConfigOptions): webpack.Configurat
         },
         resolve: resolvers(paths),
         devtool: isDev ? 'inline-source-map' : undefined,
+        devServer: isDev ? createDevServer(options) : undefined,
     }
 }
