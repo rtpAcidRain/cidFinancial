@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack --env mode=development",
+    "start": "webpack",
     "build": "webpack --env mode=production"
   },
   "repository": {
@@ -14,20 +14,25 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "bugs": {
     "url": "https://github.com/rtpAcidRain/cidFinancial/issues"
   },
   "homepage": "https://github.com/rtpAcidRain/cidFinancial#readme",
   "devDependencies": {
     "@babel/core": "^7.26.10",
+    "@babel/plugin-transform-runtime": "^7.26.10",
+    "@babel/plugin-transform-typescript": "^7.26.8",
     "@babel/preset-env": "^7.26.9",
     "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.26.0",
     "@types/node": "^22.13.10",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@types/webpack": "^5.28.5",
     "babel-loader": "^10.0.0",
+    "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^9.0.2",
+    "html-webpack-plugin": "^5.6.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.2",
     "webpack": "^5.98.0",

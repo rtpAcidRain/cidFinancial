@@ -1,8 +1,9 @@
 import { createRoot } from 'react-dom/client';
+import App from './App';
 
 const container = document.getElementById('root');
 if(!container) {
     throw Error('Container not defined')
 }
 const root = createRoot(container);
-root.render(<h1>Hello, world</h1>);
+root.render(<App />);

@@ -1,9 +1,9 @@
+import webpack from "webpack";
 import path from "path";
-import createWebpackConfig from "./config/webpackConfig/createWebpackConfig";
 import { WConfigEnv, WConfigPaths } from "./config/webpackConfig/types/types";
+import { createWebpackConfig } from "./config/webpackConfig/createWebpackConfig";
 
-
-const configuration = (env: WConfigEnv) => {
+export default (env: WConfigEnv) => {
 
     const paths: WConfigPaths = {
         entry: path.resolve(import.meta.dirname, 'src', 'index.tsx'),
@@ -20,7 +20,7 @@ const configuration = (env: WConfigEnv) => {
 
     const isDev = mode === 'development';
 
-    return createWebpackConfig({
+    const config: webpack.Configuration = createWebpackConfig({
         paths,
         mode,
         port,
@@ -28,6 +28,6 @@ const configuration = (env: WConfigEnv) => {
         isDev,
         project: 'frontend',
     })
-}
 
-export default configuration
+    return config
+}

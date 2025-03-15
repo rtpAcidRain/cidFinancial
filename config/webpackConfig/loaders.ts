@@ -1,29 +1,24 @@
-import webpack from "webpack"
+import { RuleSetRule } from "webpack"
 import { WConfigOptions } from "./types/types"
+import { babelLoader } from './helpers/babelLoader';
 
-function loaders(options: WConfigOptions): webpack.RuleSetRule[] {
+export function loaders(options: WConfigOptions): RuleSetRule[] {
+
+    const codeBabel = babelLoader({ ...options, isTsx: false });
+    const tsxCodeBabel = babelLoader({ ...options, isTsx: true });
+
+    const fileLoader = {
+        test: /\.(png|jpe?g|gif|woff2|woff)$/i,
+        use: [
+            {
+                loader: 'file-loader',
+            },
+        ],
+    };
+
     return [
-        {
-            test: /\.(js|ts)$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env'],
-                }
-            }
-        },
-        {
-            test: /\.(?:tsx|jsx)$/,
-            exclude: /node_modules/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env'],
-                }
-            }
-        }
-    ]
+        fileLoader,
+        codeBabel,
+        tsxCodeBabel,
+    ];
 }
-
-export default loaders

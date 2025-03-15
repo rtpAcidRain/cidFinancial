@@ -1,7 +1,7 @@
-import webpack from "webpack"
+import { ResolveOptions } from "webpack"
 import { WConfigPaths } from "./types/types"
 
-function resolvers(paths: WConfigPaths): webpack.ResolveOptions {
+export function resolvers(paths: WConfigPaths): ResolveOptions {
     return {
         extensions: ['.tsx', '.ts', '.js'],
         preferAbsolute: true,
@@ -11,5 +11,3 @@ function resolvers(paths: WConfigPaths): webpack.ResolveOptions {
         },
     }
 }
-
-export default resolvers

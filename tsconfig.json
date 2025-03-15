@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "outDir": "./build/",
-        "sourceMap": true,
         "noImplicitAny": true,
         "module": "ESNext",
         "target": "es5",
@@ -11,11 +10,13 @@
         "moduleResolution": "node",
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
+        "baseUrl": ".",
         "paths": {
             "@/*": [
-                "./src/*"
+                "src/*"
             ]
         },
+        "isolatedModules": true,
     },
     "ts-node": {
         "compilerOptions": {
@@ -23,8 +24,8 @@
         }
     },
     "include": [
-        "./config/jest/setupTest.ts",
         "./src/**/*.ts",
-        "./src/**/*.tsx"
+        "./src/**/*.tsx",
+        "webpack.config.ts"
     ],
 }
