@@ -1,5 +1,5 @@
-import { ResolveOptions } from "webpack"
-import { WConfigPaths } from "./types/types"
+import { ResolveOptions } from 'webpack';
+import { WConfigPaths } from './types/types';
 
 export function resolvers(paths: WConfigPaths): ResolveOptions {
     return {
@@ -9,5 +9,5 @@ export function resolvers(paths: WConfigPaths): ResolveOptions {
         alias: {
             '@': paths.src,
         },
-    }
+    };
 }

@@ -1,7 +1,7 @@
-import { WConfigOptions } from "../types/types";
+import { WConfigOptions } from '../types/types';
 
 interface babelLoaderProps extends WConfigOptions {
-    isTsx?: boolean
+    isTsx?: boolean;
 }
 
 export function babelLoader({ isDev, isTsx }: babelLoaderProps) {
@@ -11,16 +11,14 @@ export function babelLoader({ isDev, isTsx }: babelLoaderProps) {
         use: {
             loader: 'babel-loader',
             options: {
-                presets: [
-                    ['@babel/preset-env'],
-                ],
+                presets: [['@babel/preset-env']],
                 plugins: [
                     [
                         '@babel/plugin-transform-typescript',
                         {
                             isTsx,
                         },
-                    ]
+                    ],
                 ],
             },
         },

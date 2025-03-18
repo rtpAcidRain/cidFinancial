@@ -1,13 +1,12 @@
-import webpack from 'webpack'
+import webpack from 'webpack';
 import { WConfigOptions } from './types/types';
 import { resolvers } from './resolvers';
 import { plugins } from './plugins';
 import { loaders } from './loaders';
-import { createDevServer } from './creteDevServer';
-
+import { createDevServer } from './devServer';
 
 export function createWebpackConfig(options: WConfigOptions): webpack.Configuration {
-    const { mode, paths, isDev } = options
+    const { mode, paths, isDev } = options;
     return {
         mode,
         entry: paths.entry,
@@ -24,5 +23,5 @@ export function createWebpackConfig(options: WConfigOptions): webpack.Configurat
         resolve: resolvers(paths),
         devtool: isDev ? 'inline-source-map' : undefined,
         devServer: isDev ? createDevServer(options) : undefined,
-    }
+    };
 }

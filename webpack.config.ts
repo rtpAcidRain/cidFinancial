@@ -1,10 +1,9 @@
-import webpack from "webpack";
-import path from "path";
-import { WConfigEnv, WConfigPaths } from "./config/webpackConfig/types/types";
-import { createWebpackConfig } from "./config/webpackConfig/createWebpackConfig";
+import webpack from 'webpack';
+import path from 'path';
+import { WConfigEnv, WConfigPaths } from './config/webpack/types/types';
+import { createWebpackConfig } from './config/webpack/createWebpackConfig';
 
 export default (env: WConfigEnv) => {
-
     const paths: WConfigPaths = {
         entry: path.resolve(__dirname, 'src', 'index.tsx'),
         build: path.resolve(__dirname, 'build'),
@@ -27,7 +26,7 @@ export default (env: WConfigEnv) => {
         apiUrl,
         isDev,
         project: 'frontend',
-    })
+    });
 
-    return config
-}
+    return config;
+};
