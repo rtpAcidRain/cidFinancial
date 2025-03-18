@@ -19,7 +19,8 @@ export function babelLoader({ isDev, isTsx }: babelLoaderProps) {
                             isTsx,
                         },
                     ],
-                ],
+                    isDev && require.resolve('react-refresh/babel'),
+                ].filter(Boolean),
             },
         },
     };

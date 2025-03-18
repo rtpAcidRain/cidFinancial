@@ -47,6 +47,7 @@ export default defineConfig([
             'react-hooks/rules-of-hooks': 'error',
             'react-hooks/exhaustive-deps': 'error',
             '@typescript-eslint/no-unused-vars': ['warn'],
+            '@typescript-eslint/no-explicit-any': 'off',
             // "i18next/no-literal-string": [
             //   "warn",
             //   {
