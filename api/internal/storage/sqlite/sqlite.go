@@ -64,7 +64,7 @@ type Base struct {
 	ID           int    `json:"id"`
 	Basename     string `json:"basename"`
 	Password     string `json:"password"`
-	MainCurrency int    `json:"main_currency"`
+	MainCurrency string    `json:"main_currency"`
 	Url          string `json:"url"`
 }
 
@@ -111,6 +111,50 @@ func (s *Storage) GetBaseByUrl(url string) (*Base, error) {
 		return nil, fmt.Errorf("%s: execute statement: %w", op, err)
 	}
 	return &base, nil
+}
+
+
+func (s *Storage) GetAllBases() ([]*Base, error) {
+	const op = "storage.sqlite.GetAllBases"
+
+	query :=  `
+		SELECT b.id, b.basename, b.password, c.name AS main_currency, b.url
+		FROM base b
+		JOIN currency c ON b.main_currency = c.id
+	`
+	stmt, err := s.db.Prepare(query)
+	if err != nil {
+		return nil, fmt.Errorf("%s: prepare statement: %w", op, err)
+	}
+	defer stmt.Close()	
+
+	rows, err := stmt.Query()
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return nil, storage.ErrBaseNotFound
+		}
+		return nil, fmt.Errorf("%s: execute statement: %w", op, err)
+	}
+	defer rows.Close()		
+
+	var bases []*Base
+	for rows.Next() {
+		var base Base
+		if err := rows.Scan(&base.ID, &base.Basename, &base.Password, &base.MainCurrency, &base.Url); err != nil {
+			return nil, fmt.Errorf("%s: scan row: %w", op, err)
+		}
+		bases = append(bases, &base)
+	}
+
+	if err = rows.Err(); err != nil {
+		return nil, fmt.Errorf("%s: rows error: %w", op, err)
+	}
+
+	if len(bases) == 0 {
+		return nil, storage.ErrBaseNotFound
+	}
+
+	return bases, nil
 }
 
 func (s *Storage) DeleteBase(id int) error {

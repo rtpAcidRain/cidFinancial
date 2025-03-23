@@ -8,5 +8,9 @@
     "bracketSameLine": false,
     "singleAttributePerLine": true,
     "arrowParens": "always",
-    "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-classnames", "prettier-plugin-merge"]
+    "plugins": [
+        "prettier-plugin-tailwindcss",
+        "prettier-plugin-classnames",
+        "prettier-plugin-merge"
+    ]
 }

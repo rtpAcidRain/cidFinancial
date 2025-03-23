@@ -1,7 +1,9 @@
 import { Configuration as DevServerConfiguration } from 'webpack-dev-server';
 import { WConfigOptions } from './types/types';
 
-export function createDevServer(options: WConfigOptions): DevServerConfiguration {
+export function createDevServer(
+    options: WConfigOptions,
+): DevServerConfiguration {
     return {
         port: options.port,
         open: true,

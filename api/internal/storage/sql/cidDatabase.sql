@@ -60,9 +60,9 @@ CREATE TABLE IF NOT EXISTS "currency" (
 	ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
--- INSERT INTO "currency"("name") VALUES ("Usd");
--- INSERT INTO "currency"("name") VALUES ("Rub");
--- INSERT INTO "currency"("name") VALUES ("Eur");
+INSERT OR IGNORE INTO "currency"("name") VALUES ("Usd");
+INSERT OR IGNORE INTO "currency"("name") VALUES ("Rub");
+INSERT OR IGNORE INTO "currency"("name") VALUES ("Eur");
 
 CREATE TABLE IF NOT EXISTS "account_categories" (
 	"id" INTEGER NOT NULL UNIQUE,

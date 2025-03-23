@@ -26,8 +26,8 @@ type BaseSaveRequest struct {
 }
 
 type BaseSaveResponse struct {
-	BaseId int64  `json:'base_id'`
-	Url    string `json:url`
+	BaseId int64  `json:"id"`
+	Url    string `json:"url"`
 }
 
 type BaseSaver interface {
@@ -130,20 +130,39 @@ func GetByUrl(log *slog.Logger, baseGetter BaseGetter) http.HandlerFunc {
 
 		base, err := baseGetter.GetBaseByUrl(alias)
 		if errors.Is(err, storage.ErrBaseExists) {
-			log.Info("base already exists", slog.String("base", alias))
+			log.Info("no bases with url", slog.String("base", alias))
 
-			render.JSON(w, r, resp.Error("base already exists"))
-
-			return
-		}
-		if err != nil {
-			log.Error("failed to add base", sl.Err(err))
-
-			render.JSON(w, r, resp.Error("failed to add base"))
+			render.JSON(w, r, resp.Error("no bases with url"))
 
 			return
 		}
-
 		resp.ResponseOK(w, r, &base)
+	}
+}
+
+
+type AllBasesGetter interface {
+	GetAllBases() ([]*sqlite.Base, error)
+}
+
+func GetAll(log *slog.Logger, allBaseGetter AllBasesGetter) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		const op = "handlers.base.GetAll"
+
+		log := log.With(
+			slog.String("op", op),
+			slog.String("request_id", middleware.GetReqID(r.Context())),
+		)
+
+		bases, err := allBaseGetter.GetAllBases()
+		if errors.Is(err, storage.ErrBaseExists) {
+			log.Info("no bases")
+
+			render.JSON(w, r, resp.Error("no bases"))
+
+			return
+		}
+
+		resp.ResponseOK(w, r, &bases)
 	}
 }

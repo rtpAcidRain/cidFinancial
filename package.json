@@ -44,6 +44,7 @@
         "eslint-plugin-prettier": "^5.2.3",
         "eslint-plugin-react": "^7.37.4",
         "eslint-plugin-react-hooks": "^5.2.0",
+        "eslint-plugin-tailwindcss": "^3.18.0",
         "eslint-plugin-unused-imports": "^4.1.4",
         "file-loader": "^6.2.0",
         "fork-ts-checker-webpack-plugin": "^9.0.2",
@@ -67,8 +68,11 @@
         "webpack-dev-server": "^5.2.0"
     },
     "dependencies": {
+        "@reduxjs/toolkit": "^2.6.1",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
+        "react-redux": "^9.2.0",
+        "react-router-dom": "^7.4.0",
         "tailwindcss": "^4.0.14"
     },
     "pnpm": {

@@ -14,11 +14,6 @@ type ResponseStatuses struct {
 	Error  string `json:"error,omitempty"`
 }
 
-type ResponseWrapper struct {
-	ResponseStatuses
-	Res any `json:"res"`
-}
-
 const (
 	StatusOK    = "OK"
 	StatusError = "Error"
@@ -58,8 +53,6 @@ func ValidationError(errs validator.ValidationErrors) ResponseStatuses {
 }
 
 func ResponseOK(w http.ResponseWriter, r *http.Request, serverRes any) {
-	render.JSON(w, r, ResponseWrapper{
-		ResponseStatuses: OK(),
-		Res:              serverRes,
-	})
-}
+	(w).Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+	render.JSON(w, r, serverRes)
+}		

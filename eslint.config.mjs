@@ -6,6 +6,7 @@ import pluginReact from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import prettierEslint from 'eslint-plugin-prettier/recommended';
 import unusedImports from 'eslint-plugin-unused-imports';
+import tailwind from 'eslint-plugin-tailwindcss';
 
 export default defineConfig([
     {
@@ -15,6 +16,7 @@ export default defineConfig([
     ...tseslint.configs.recommended,
     pluginReact.configs.flat.recommended,
     reactHooks.configs['recommended-latest'],
+    ...tailwind.configs['flat/recommended'],
     {
         plugins: {
             prettier: prettierEslint,
